@@ -1,20 +1,22 @@
-// import models
-const Product = require('./Product');
-const Category = require('./Category');
-const Tag = require('./Tag');
-const ProductTag = require('./ProductTag');
+const sequelize = require('../config/connection');
 
-// Products belongsTo Category
+// Import models with conditional checks
+const Category = require('./Category') || sequelize.import('./Category');
+const Product = require('./Product') || sequelize.import('./Product');
+const Tag = require('./Tag') || sequelize.import('./Tag');
+const ProductTag = require('./ProductTag') || sequelize.import('./ProductTag');
 
-// Categories have many Products
+// Define associations
 
-// Products belongToMany Tags (through ProductTag)
-
-// Tags belongToMany Products (through ProductTag)
+// Sync sequelize models to the database
+sequelize.sync({ force: false }).then(() => {
+  console.log('Database synced');
+});
 
 module.exports = {
-  Product,
   Category,
+  Product,
   Tag,
   ProductTag,
 };
+
