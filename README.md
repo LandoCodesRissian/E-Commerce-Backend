@@ -41,7 +41,7 @@ To use this project:
 - DELETE /api/tags/:id
 
 ## Demo Video
-https://drive.google.com/file/d/13ui2sBjyh3nbWzGP84-w97ScA--pIup3/view
+https://drive.google.com/file/d/13ui2sBjyh3nbWzGP84-w97ScA--pIup3/view?pli=1
 
 ## Contributing
 Contributions are welcome. Please open an issue or submit a pull request for any changes.
