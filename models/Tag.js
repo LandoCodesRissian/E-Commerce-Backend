@@ -5,16 +5,17 @@ class Tag extends Model {}
 
 Tag.init(
   {
+    // Define columns
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
-    tag_name: {
+    name: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
     sequelize,
