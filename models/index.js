@@ -1,22 +1,38 @@
-const sequelize = require('../config/connection');
-
-// Import models with conditional checks
-const Category = require('./Category') || sequelize.import('./Category');
-const Product = require('./Product') || sequelize.import('./Product');
-const Tag = require('./Tag') || sequelize.import('./Tag');
-const ProductTag = require('./ProductTag') || sequelize.import('./ProductTag');
-
-// Define associations
-
-// Sync sequelize models to the database
-sequelize.sync({ force: false }).then(() => {
-  console.log('Database synced');
+// import models
+const Product = require('./Product');
+const Category = require('./Category');
+const Tag = require('./Tag');
+const ProductTag = require('./ProductTag');
+// Products belongsTo Category
+// Categories have many Products
+// Products belongToMany Tags (through ProductTag)
+// Tags belongToMany Products (through ProductTag)
+//fix
+// Products belongsTo Category
+Product.belongsTo(Category, {
+  foreignKey: 'category_id',
+  onDelete: 'CASCADE',
 });
-
+// Categories have many Products
+Category.hasMany(Product, {
+  foreignKey: 'category_id',
+});
+// Products belongToMany Tags (through ProductTag)
+Product.belongsToMany(Tag, {
+  through: ProductTag,
+  // as: 'product_tags',
+  foreignKey: 'product_id',
+});
+// Tags belongToMany Products (through ProductTag)
+Tag.belongsToMany(Product, {
+  through: ProductTag,
+  // as: 'product_tags',
+  foreignKey: 'tag_id',
+});
+//fix
 module.exports = {
-  Category,
   Product,
+  Category,
   Tag,
   ProductTag,
 };
-
