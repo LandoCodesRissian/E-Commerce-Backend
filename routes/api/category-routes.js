@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
 // GET all categories
-router.get('/categories', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const categoryData = await Category.findAll({
       include: [{ model: Product }],
